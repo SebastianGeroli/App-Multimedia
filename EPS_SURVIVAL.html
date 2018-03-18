@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Titulo e icono -->
+	<title>E.P.S. Survival</title>
+	<link rel="icon" href="img/epss_icon.ico">
+
+	<!-- Import CSS and JS files -->
+	<link rel="stylesheet" type="text/css" href="css/style_eps_survival.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="css/style_carteles.css" media="screen"/>
+	<script type="text/javascript" src="js/code_eps_survival.js"></script>
+	<script type="text/javascript" src="js/js_carteles.js"></script>
+
+	<!-- Incluir ñ, acentos, etc. -->
+	<meta http-equiv="content-type" content="text/html" charset="utf-8">
+
+	<!-- Charset y demas(codigo de caracteres)IMPORTANTE, sino da error -->
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+  <img  id = "logoUC3M" src="img/Logo_UC3M.png">
+  <header id = "title1">
+	<div id = "white_rect">
+
+		<H1>E.P.S. Survival</H1>
+		<!-- <img class="EPS_Survival" src="EPS_Survival.png"> -->
+
+	</div>
+  </header>
+<br><br><br><br><br>
+  <div id = "navmenu">
+
+    <span id = "option_home" class="option_pulsed" onclick="change_class_home()">Home</span>
+    <span id = "option_info" class="option_not_pulsed" onclick="change_class_info()">Info</span>
+    <span id = "option_como_jugar" class="option_not_pulsed" onclick="change_class_como_jugar()">Como jugar</span>
+    <span id = "option_juego" class="option_not_pulsed" onclick="change_class_juego()">Juego</span>
+
+  </div>
+
+<section id="principal" style="position:relative">
+	<section id ="home" class="window_pulsed">
+		<center>
+			<video width="500" controls>
+				<source src="video/eps_survival.mp4" type="video/mp4">
+					Your browser does not support HTML5 video.
+				</video>
+			</center>
+
+	</section>
+
+	<section id = "info" class="window_not_pulsed">
+
+	<div class = "div_white">
+		<h2>INFORMACIÓN</h2>
+		<p> En esta sección se presenta a los humildes creadores del juego. </p>
+		<p> Estudiantes en Grado de Ingeniería de Sistemas Audiovisuales. </p>
+
+
+		<center>
+			<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Santiago</button>
+			<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Ignacio</button>
+			<button onclick="document.getElementById('id03').style.display='block'" style="width:auto;">Oscar</button>
+			<button onclick="document.getElementById('id04').style.display='block'" style="width:auto;">Eloy</button>
+		</center>
+	</div>
+
+		<div id="id01" class="modal">
+			<form class="modal-content animate">
+				<div class="imgcontainer">
+				  <img src="img/avatar/santi.jpg" alt="Avatar" class="avatar">
+				</div>
+
+				<div class="container" style="background-color:#fefefe">
+				<center><h2> Santi </h2></center>
+				<center><a href="mailto:100293375@alumnos.uc3m.es">100293375@alumnos.uc3m.es</a></center>
+					<ul>
+					  <li>Diseño de los objetos buenos y malos</li>
+					  <li>Implementacion de la música y sonidos del juego y sus funcionamientos</li>
+					  <li>Lista de imagenes de fondo y cambio de fondo por nivel </li>
+					  <li>GIFS </li>
+					</ul>
+
+				  <center><input type = "button"
+					value = "Cerrar"
+					onclick="document.getElementById('id01').style.display='none'"></center>
+				</div>
+		  </form>
+		</div>
+
+		<div id="id02" class="modal">
+			<form class="modal-content animate">
+				<div class="imgcontainer">
+				  <img src="img/avatar/nacho.png" alt="Avatar" class="avatar">
+				</div>
+
+				<div class="container" style="background-color:#fefefe">
+
+				    <center><h2> Nacho </h2></center>
+					<center><a href="mailto:100315048@alumnos.uc3m.es">100315048@alumnos.uc3m.es</a></center>
+					<ul>
+					  <li> Colisiones objeto-jugador</li>
+					  <li> Mensajes entre nivel y nivel </li>
+					  <li> Edición de video presentación </li>
+
+					</ul>
+				  <center><input type = "button"
+					value = "Cerrar"
+					onclick="document.getElementById('id02').style.display='none'"></center>
+				</div>
+		  </form>
+		</div>
+
+		<div id="id03" class="modal">
+			<form class="modal-content animate">
+				<div class="imgcontainer">
+				  <img src="img/avatar/avatar_oscar.jpg" alt="Avatar" class="avatar">
+				</div>
+
+				<div class="container" style="background-color:#fefefe">
+
+				  <center><h2> Oscar </h2></center>
+					<center><a href="mailto:100330247@alumnos.uc3m.es">100330247@alumnos.uc3m.es</a></center>
+				<ul>
+				  <li>HTML y distribuición de ventanas</li>
+				  <li>Colisiones objeto jugador</li>
+					<li>Introducción apariencia jugador y cambio al colisionar</li>
+					<li>Comienzo y reinicio del juego</li>
+				</ul>
+				  <center><input type = "button"
+					value = "Cerrar"
+					onclick="document.getElementById('id03').style.display='none'"></center>
+				</div>
+		  </form>
+		</div>
+
+		<div id="id04" class="modal">
+			<form class="modal-content animate">
+				<div class="imgcontainer">
+				  <img src="img/avatar/avatar_eloy.gif" alt="Avatar" class="avatar">
+				</div>
+
+				<div class="container" style="background-color:#fefefe">
+
+					<center><h2> Eloy </h2></center>
+					<center><a href="mailto:100315357@alumnos.uc3m.es">100315357@alumnos.uc3m.es</a></center>
+					<ul>
+					  <li>Engargado de la creación de objetos (de las propiedades del jugador y de sus movimientos respectivos).</li>
+					  <li>Introducción de los vídeos entre niveles y de sus propiedades.</li>
+					  <li>Session storage y botonera.</li>
+					  <li>Contribución del movimiento de la cabecera y los carteles emergentes de la página con CSS. </li>
+					</ul>
+				  <center><input type = "button"
+					value = "Cerrar"
+					onclick="document.getElementById('id04').style.display='none'"></center>
+				</div>
+		  </form>
+		</div>
+
+
+
+	</section>
+
+	<section id = "como_jugar" class="window_not_pulsed">
+
+	<div class = "div_white">
+
+		<div class = "letra_comojugar">
+
+	<p> <br><br>INSTRUCCIONES:</br></br>
+
+     BIENVENIDOS a EPS SURVIVAL, el juego que os curtirá de cara al resto que os queda de carrera! El
+     juego consiste en ir superando los 4 años de carrera (4 niveles) sin perder las 6 convocatorias de
+     las que dispones (las vidas). Cada nivel será mas largo y mas complicado que el anterior. Los
+     objetos que van cayendo en cada nivel representan las ventajas y dificultades que se os presentarán
+     a lo largo de esta aventura (o calvario) según el optimismo y perseverancia con la que se mire. </p>
+
+     <p>  OBJETO MALO: El temido 4.9:
+     Objeto malo malísimo.
+     Coger uno de estos también hará que reduzca 1 punto tu Score, te quitará una
+     convocatoria, y bajará tu velocidad de movimiento, lo cual influye en tu
+     capacidad para seguir esquivando objetos malos o coger objetos buenos Con lo
+     desmotivante que es no podía ser de otra manera.</p>
+
+     <img src="img_2/4con9.jpg" alt="HTML5 Icon" style="width:60px;height:60px;">
+
+     <p>OBJETO MALO: El BUG de código:
+     Coger uno de estos también hará que reduzca 1 punto tu Score, te quitará una
+	 convocatoria, y también bajará tu velocidad de movimiento. Quien no ha tenido
+	 esa tarde entera de un error de código desconocido? Error que al final se traduce
+     en un “Mi código no funciona no se por qué” y un “Mi código funciona no se por
+     qué”. Ejemplos de estos: “Segmentation Fault”, “El canvas me sale raro”, “no
+     compila”.</p>
+
+     <img src="img_2/bug.png" alt="HTML5 Icon" style="width:60px;height:60px;">
+
+	 <p>OBJETO MALO: Que te deje la novia:
+	 El último objeto malo malísimo del que te tienes que preocupar.
+	 Coger uno de estos también hará que reduzca 1 punto tu Score, te
+	 quitará una convocatoria y también afectará a tu velocidad de
+	 movimiento.Estudiar rayao, pues no!</p>
+
+	 <img src="img_2/brokenheart.png" alt="HTML5 Icon" style="width:90px;height:60px;">
+
+	 <p>OBJETO BUENO: Redbull:
+	 Coger uno de estos sumará un punto a tu Score y aumentará tu velocidad de
+ 	 movimiento, cosa que se agradece si quieres esquivar
+	 esos 4.9. Pero ten cuidado mucho Redbul y hará que pierdas el control
+	 aumentará el riesgo de darte guantazos.</p>
+
+	 <img src="img_2/redbull.jpg" alt="HTML5 Icon" style="width:60px;height:60px;">
+
+	 <p>OBJETO BUENO: Café:
+	 Paralelamente al Redbul, Coger uno de estos también sumará un punto a tu Score y
+	 aumentara tu velocidad de movimiento. Pero ten mucho cuidado que como ya hemos
+	 advertido, mucho café hará que pierdas el control
+	 aumentará el riesgo que te manden a junio con un 4,9. </p>
+
+	 <img src="img_2/cafe.png" alt="HTML5 Icon" style="width:60px;height:60px;">
+
+	 <p>OBJETO BUENO: Apuntes de chica:
+	 Los apuntes de las chicas son 758694758 veces mejores que los de los
+	 chicos. Eso es asi de aquí a Pekin.
+	 Coger uno de estos sumará un punto a tu Score y aumentará tu velocidad de
+	 movimiento. Pero ten cuidado, demasiado buen conocimiento bien ordenado
+	 puede hacer que te confíes demasiado!<p>
+
+	 <img src="img_2/apuntesrosa.jpg" alt="HTML5 Icon" style="width:60px;height:60px;">
+	 	 </div>
+	 </div>
+
+
+
+
+
+	</section>
+
+	<section id="juego" class="window_not_pulsed">
+
+			<center id = "center1" class = "before_canvas_show">
+				<input type="button" value="JUGAR" class="play_button" onclick="play_button_to_game()">
+			</center>
+
+
+		<div class="black_margin">
+			<canvas id="micanvas" class = "not_show" width="900" height="505" onmousemove="follow_jugador(event)"> <!-- /*relacion 16:9*/-->
+				ERROR: Tu navegador no compatible con canvas !
+			</canvas>
+
+			<audio id="sorbo"   type="audio/mp3">
+			</audio>
+
+
+			<video id = "myVideo"  class = "not_show">
+
+				<source src="video/video1_simpson.mp4" type="video/mp4">
+				Your browser does not support HTML5 video.
+			</video>
+		</div>
+
+		<div id = "botones" align= "middle">
+
+			<form>
+				<center>
+					<input id = "parapausa"
+					class = "not_show"
+					type = "button"
+					value = "Pause"
+					onClick="start_stop()">
+
+					<input id = "button_save"
+					class = "not_show"
+					type = "button"
+					value = "Save Res."
+					onClick="clickSave()">
+
+					<input id = "button_print"
+					class = "not_show"
+					type = "button"
+					value = "Lista de resultados"
+					onClick="printTabla()">
+
+					<input id = "button_reset"
+					class = "not_show"
+					type = "button"
+					value = "Reiniciar"
+					onClick="resetear()">
+
+					<input id = "button_skip"
+					class = "not_show"
+					type = "button"
+					value = "Skip Video"
+					onClick="skip_video()">
+
+				</center>
+
+				<p id="info_p1"></p>
+				<p id="info_p3"></p>
+				<p id="info_p2"></p>
+			</form>
+		</div>
+
+
+
+	<audio id="slap1" src="audio/slap1.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="sorbo1" src="audio/clip.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="slap2" src="audio/slap2.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="apuntes" src="audio/papel.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="aww" src="audio/aww.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="musica" src="audio/80s-Classic.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="success" src="audio/success.mp3" type="audio/mp3">
+	</audio>
+
+	<audio id="gameover" src="audio/gameover.mp3" type="audio/mp3">
+	</audio>
+
+
+	</section>
+</section>
+
+
+
+
+
+</body>
+</html>
