@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html" charset="utf-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/pedro.css" media="screen"/>
+	<script type="text/javascript" src="js/pedro.js"></script>
+
+
+
+</head>
+<body>
+
+	<header id = "title1">
+	<div id = "parpadear">
+
+		<H1>NOMBRE DE LA PAGINA</H1>
+		
+
+	</div>
+  </header>
+<br><br><br><br><br>
+  
+  <div id = "navmenu">
+
+    <span id = "option_home" class="option_pulsed" onclick="change_class_home()">HOME</span>
+    <span id = "option_info" class="option_not_pulsed" onclick="change_class_info()">INFO</span>
+    <span id = "option_como_jugar" class="option_not_pulsed" onclick="change_class_como_jugar()">COMO JUGAR</span>
+    <span id = "option_juego" class="option_not_pulsed" onclick="change_class_juego()">JUEGO</span>
+    <span id = "option_opiniones" class="option_not_pulsed" onclick="change_class_opiniones()">OPINIONES</span>
+
+  </div>
+
+
+<section id="principal" style="position:relative">
+	<section id ="home" class="window_pulsed">
+		<div class = "div_claro">
+			BLA BLA BLA PAGINA DE INICIO
+		</div>
+
+	</section>
+
+<section id = "info" class="window_not_pulsed">
+
+	<div class = "div_claro">
+		<h2>INFORMACIÓN</h2>
+		<p> Informacion sobre nosotros </p>
+
+	</div>
+</section>
+
+<section id = "como_jugar" class="window_not_pulsed">
+
+	<div class = "div_claro">
+		<h2>CÓMO JUGAR</h2>
+		<p> Contamos como jugar. </p>
+	</div>
+</section>
+
+</section>
+
+<section id="juego" class="window_not_pulsed">
+	<div class = "div_claro">
+		<input type="button" value="JUGAR" class="play_button" onclick="play_button_to_game()">
+	</div>
+</section>
+
+
+
+<section id = "opiniones" class="window_not_pulsed"> 
+
+	<div class = "div_claro">
+		<table>
+		<caption><h1>ENCUESTA</h1></caption> 
+		<form>
+ 
+		<tr><td><b>Nombre:</b></td></tr> 
+		<tr><td><input type="text" name="nombre" class="nombre" value=""></td></tr> 
+ 
+		<tr><td><b>Edad:</b></td></tr> 
+		<tr><td><input type="text" name="edad" class="edad" value=""></td></tr> 
+ 
+		<tr><td><b>Nota?:</b></td></tr> 
+		<tr><td> 
+		<input TYPE="radio" NAME="nota" VALUE="1">1</input> 
+		<input TYPE="radio" NAME="nota" VALUE="2">2</input> 
+		<input TYPE="radio" NAME="nota" VALUE="3">3</input> 
+		<input TYPE="radio" NAME="nota" VALUE="4">4</input> 
+		<input TYPE="radio" NAME="nota" VALUE="5">5</input> 
+
+
+		<tr><td><b>Diversión?:</b></td></tr> 
+		<tr><td> 
+		<input TYPE="radio" NAME="diversion" VALUE="1">1</input> 
+		<input TYPE="radio" NAME="diversion" VALUE="2">2</input> 
+		<input TYPE="radio" NAME="diversion" VALUE="3">3</input> 
+		<input TYPE="radio" NAME="diversion" VALUE="4">4</input> 
+		<input TYPE="radio" NAME="diversion" VALUE="5">5</input> 
+
+		<tr><td><b>Jugabilidad?:</b></td></tr> 
+		<tr><td> 
+		<input TYPE="radio" NAME="jugabilidad" VALUE="1">1</input> 
+		<input TYPE="radio" NAME="jugabilidad" VALUE="2">2</input> 
+		<input TYPE="radio" NAME="jugabilidad" VALUE="3">3</input> 
+		<input TYPE="radio" NAME="jugabilidad" VALUE="4">4</input> 
+		<input TYPE="radio" NAME="jugabilidad" VALUE="5">5</input> 
+
+		<tr><td><b>Te resulta visualmente entretenido?:</b></td></tr> 
+		<tr><td> 
+		<input TYPE="radio" NAME="visual" VALUE="1">1</input> 
+		<input TYPE="radio" NAME="visual" VALUE="2">2</input> 
+		<input TYPE="radio" NAME="visual" VALUE="3">3</input> 
+		<input TYPE="radio" NAME="visual" VALUE="4">4</input> 
+		<input TYPE="radio" NAME="visual" VALUE="5">5</input> 
+
+
+		<tr><td><b>Recomendarías este juego a algún conocido?:</b></td></tr> 
+		<tr><td> 
+		<input TYPE="radio" NAME="recomendar" VALUE="1">1</input> 
+		<input TYPE="radio" NAME="recomendar" VALUE="2">2</input> 
+		<input TYPE="radio" NAME="recomendar" VALUE="3">3</input> 
+		<input TYPE="radio" NAME="recomendar" VALUE="4">4</input> 
+		<input TYPE="radio" NAME="recomendar" VALUE="5">5</input> 
+
+		</td></tr> 
+ 
+		<tr><td><b>Observaciones:</b></td></tr> 
+		<tr><td> 
+		<textarea name="observaciones"  rows="10" cols="50"></textarea> 
+		</td></tr> 
+ 
+		<tr><td><INPUT TYPE="checkbox" class="condiciones" NAME="condiciones">Acepta las condiciones<tr><td> 
+ 
+		<tr><td><input type="submit" NAME="enviar" VALUE="Enviar" onclick="validar()"/> 
+		<input type="reset" NAME="borrar" VALUE="Borrar"/></td></tr> 
+ 
+
+ 
+	</form> 
+	</table>
+	</div>
+</section> 
+
+
+
+<div id=botones>
+<button class="push--flat" value="PRESS">
+</div>
+
+
+
+	
+</body>
+</html>
