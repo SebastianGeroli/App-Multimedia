@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css?family=VT323");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+body {
+  color: #fff;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  background: repeating-linear-gradient(to bottom, #0f0a1e, #0f0a1e 2px, #140e29 2px, #140e29 4px);
+}
+
+#principal {
+  margin-left: 7%;
+  margin-left: 7%;
+  margin-right: 7%;
+  /*width: 80%;*/
+}
+#navmenu {
+  margin-left: 7%;
+  margin-right: 7%;
+  padding-top: 12px;
+  height: auto;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.option_not_pulsed {
+  background-color: #140e29; 
+  font-weight:lighter;
+  font-size: 40px;
+  padding: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.option_pulsed {
+  background-color: #0f0a1e;
+  font-weight: bold;
+  font-size: 40px;
+  padding: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.window_pulsed {
+
+  height: auto;
+  /*z-index: 2;*/
+  display: block;
+  /*position: absolute;*/
+  width: 100%;
+  padding-top:25px;
+  padding-bottom:10px;
+  margin-bottom: 10px;
+
+}
+.window_not_pulsed {
+
+  display: none;
+  margin-top: 10px;
+ 
+}
+.div_claro {
+  background-color: #140e29;
+  border-radius: 10px 10px 10px 10px ;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 10px;
+  padding:10px;
+  
+  text-align: center;
+}
+
+div#encuesta{
+  position: absolute;
+  color: #fff;
+  text-align: left;
+  margin: auto;
+  font-size: 20px;
+  line-height: 10px;
+  letter-spacing: 2px;
+  
+}
+#title1 {
+  font-size: xx-large;
+  background-color: none; 
+  margin-bottom: 80px;
+  position: relative;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  line-height: 40px;
+  letter-spacing: 5px;
+  text-shadow: -2px 0 0 #fdff2a, -4px 0 0 #df4a42, 2px 0 0 #91fcfe, 4px 0 0 #4405fc;
+  animation: blink 1s steps(4, start) infinite;
+}
+@-moz-keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+@-o-keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+
+
