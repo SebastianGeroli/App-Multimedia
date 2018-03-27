@@ -1,8 +1,8 @@
 	
     var n_encuesta = 0;
     var nota_guardar = new Array();
+    var diversion_guardar = new Array();
     var jugabilidad_guardar = new Array();
-    var recomendar_guardar = new Array();
     var visual_guardar = new Array();
     var recomendar_guardar = new Array();
 
@@ -78,7 +78,12 @@ if(valido=0){
         }
   
     }
-    alert(nombre+edad+nota_guardar[n_encuesta])
+    alert("Nombre: "+nombre+ "\n Edad: "+edad+"\n Nota: "
+        +nota_guardar[n_encuesta]+"\n Diversion: "
+        +diversion_guardar[n_encuesta]+"\n Jugabilidad: "
+        +jugabilidad_guardar[n_encuesta]+"\n Visualmente: "
+        +visual_guardar[n_encuesta]+"\n Recomdarias: "
+        +recomendar_guardar[n_encuesta]);
     n_encuesta++;
     return true;
 }
