@@ -1,61 +1,89 @@
 	
+    var n_encuesta = 0;
+    var nota_guardar = new Array();
+    var jugabilidad_guardar = new Array();
+    var recomendar_guardar = new Array();
+    var visual_guardar = new Array();
+    var recomendar_guardar = new Array();
 
-    var r_diversion;
-    var r_jugabilidad;
-    var r_recomendar;
 
    
 
 
     function validar(){
+    var valido = 0;
+    var nombre = document.getElementById("nombre").value;
+    var edad = document.getElementById("edad").value;
+    var cond = document.getElementById("condiciones");
+
+    if(nombre == ""){
+        alert("Nombre no válido.");
+        return false;
+    }else
+
+    if(isNaN(edad) || edad < 1 || edad > 100) {
+        alert("Edad no válida.");
+        return false;        
+    }else
+
+    if(!cond.checked){
+        alert("condiciones no aceptadas.");
+        return false;
+    }else{
+        alert("Gracias "+ nombre +" por participar.")
+        valido=1;
+    }
+
+if(valido=0){
+
+}else{
+
+    var nota = document.getElementsByName("nota");
+    var diversion = document.getElementsByName("diversion");
+    var jugabilidad = document.getElementsByName("jugabilidad");
+    var visual = document.getElementsByName("visual");
+    var recomendar = document.getElementsByName("recomendar");
+
+    for(var i=0; i<nota.length; i++) {
+        if(nota[i].checked){
+            nota_guardar[n_encuesta] = nota[i].value;
+        }
+  
+    }
+    
+    for(var i=0; i<diversion.length; i++) {
+        if(diversion[i].checked){
+            diversion_guardar[n_encuesta] = diversion[i].value;
+        }
+  
+    }
+    
+    for(var i=0; i<jugabilidad.length; i++) {
+        if(jugabilidad[i].checked){
+            jugabilidad_guardar[n_encuesta] = jugabilidad[i].value;   
+        }
+  
+    }
  
+    for(var i=0; i<visual.length; i++) {
+        if(visual[i].checked){
+            visual_guardar[n_encuesta] = visual[i].value;
+        }
+  
+    }
  
-    if (document.getElementsByClassName("nombre")==("")){
-        alert("Debe introducir un nombre.");
-        var nombre=document.getElementsByClassName("nombre");
-        nombre.focus();
-        return false;
+    for(var i=0; i<recomendar.length; i++) {
+        if(recomendar[i].checked){
+            recomendar_guardar[n_encuesta] = recomendar[i].value;
+        }
+  
     }
-    if (document.getElementsByClassName("edad")==("")){
-        alert("Debe introducir una edad.");
-        var edad=document.getElementsByClassName("edad");
-        edad.focus();
-        return false;
-    }
-
-    if (!document.getElementsByClassName("condiciones").checked){
-        alert("Debes aceptar las condiciones.");
-        return false;
-    }
-
-
-    //Guardar variables de la encuesta
-    r_jugabilidad=capturar(jugabilidad);
-    r_diversion=capturar(diversion);   
-    r_recomendar=capturar(recomendar);
-
-    alert("TODO BIEN "+r_jugabilidad+" "+r_diversion+" "+r_recomendar);
+    alert(nombre+edad+nota_guardar[n_encuesta])
+    n_encuesta++;
     return true;
+}
  
 }
-
-function capturar(encuesta){
-
-    this.encuesta=encuesta;
-
-        var resultado="ninguno";
- 
-        var porNombre=document.getElementsByName(encuesta);
-        // Recorremos todos los valores del radio button para encontrar el
-        // seleccionado
-        for(var i=0;i<porNombre.length;i++)
-        {
-            if(porNombre[i].checked)
-                resultado=porNombre[i].value;
-        }
-        return resultado;
-
-    }
 
 
 

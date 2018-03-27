@@ -60,7 +60,6 @@
 	<div class = "div_claro">
 		<input type="button" value="JUGAR" class="push--flat" onclick="play_button_to_game()">
 
-
 	</div>
 </section>
 
@@ -69,73 +68,106 @@
 <section id = "opiniones" class="window_not_pulsed"> 
 
 	<div class = "div_claro">
-		<table>
+		<table class = "align_izq">
 		<caption><h1>ENCUESTA</h1></caption> 
-		<form>
+		
  
 		<tr><td><b>Nombre:</b></td></tr> 
-		<tr><td><input type="text" name="nombre" class="nombre" value=""></td></tr> 
+		<tr><td><input type="text" id="nombre" size="20" ></td></tr> 
  
 		<tr><td><b>Edad:</b></td></tr> 
-		<tr><td><input type="text" name="edad" class="edad" value=""></td></tr> 
+		<tr><td><input type="text" id="edad" ></td></tr> 
  
 		<tr><td><b>Nota?:</b></td></tr> 
 		<tr><td> 
-		<input TYPE="radio" NAME="nota" VALUE="1">1</input> 
-		<input TYPE="radio" NAME="nota" VALUE="2">2</input> 
-		<input TYPE="radio" NAME="nota" VALUE="3">3</input> 
-		<input TYPE="radio" NAME="nota" VALUE="4">4</input> 
-		<input TYPE="radio" NAME="nota" VALUE="5">5</input> 
-
+		<form class = "clasificacion">
+		<input TYPE="radio" id="nota5" NAME="nota" VALUE="5"></input> 
+		<label for="nota5">★</label>
+		<input TYPE="radio" id="nota4" NAME="nota" VALUE="4"></input> 
+		<label for="nota4">★</label>
+		<input TYPE="radio" id="nota3" NAME="nota" VALUE="3"></input>
+		<label for="nota3">★</label> 
+		<input TYPE="radio" id="nota2" NAME="nota" VALUE="2"></input> 
+		<label for="nota2">★</label>
+		<input TYPE="radio" id="nota1" NAME="nota" VALUE="1"></input> 
+		<label for="nota1">★</label>
+		</form>
 
 		<tr><td><b>Diversión?:</b></td></tr> 
 		<tr><td> 
-		<input TYPE="radio" NAME="diversion" VALUE="1">1</input> 
-		<input TYPE="radio" NAME="diversion" VALUE="2">2</input> 
-		<input TYPE="radio" NAME="diversion" VALUE="3">3</input> 
-		<input TYPE="radio" NAME="diversion" VALUE="4">4</input> 
-		<input TYPE="radio" NAME="diversion" VALUE="5">5</input> 
+		<form class = "clasificacion">
+		<input TYPE="radio" id="diversion5" NAME="diversion" VALUE="5"></input> 
+		<label for="diversion5">★</label>
+		<input TYPE="radio" id="diversion4" NAME="diversion" VALUE="4"></input> 
+		<label for="diversion4">★</label>
+		<input TYPE="radio" id="diversion3" NAME="diversion" VALUE="3"></input>
+		<label for="diversion3">★</label> 
+		<input TYPE="radio" id="diversion2" NAME="diversion" VALUE="2"></input> 
+		<label for="diversion2">★</label>
+		<input TYPE="radio" id="diversion1" NAME="diversion" VALUE="1"></input> 
+		<label for="diversion1">★</label>
+		</form>
 
-		<tr><td><b>Jugabilidad?:</b></td></tr> 
-		<tr><td> 
-		<input TYPE="radio" NAME="jugabilidad" VALUE="1">1</input> 
-		<input TYPE="radio" NAME="jugabilidad" VALUE="2">2</input> 
-		<input TYPE="radio" NAME="jugabilidad" VALUE="3">3</input> 
-		<input TYPE="radio" NAME="jugabilidad" VALUE="4">4</input> 
-		<input TYPE="radio" NAME="jugabilidad" VALUE="5">5</input> 
+		<tr><td><b>Jugabilidad?:</b></td></tr>
+		<tr><td>  
+		<form class = "clasificacion">
+		<input TYPE="radio" id="jugabilidad5" NAME="jugabilidad" VALUE="5"></input> 
+		<label for="jugabilidad5">★</label>
+		<input TYPE="radio" id="jugabilidad4" NAME="jugabilidad" VALUE="4"></input> 
+		<label for="jugabilidad4">★</label>
+		<input TYPE="radio" id="jugabilidad3" NAME="jugabilidad" VALUE="3"></input>
+		<label for="jugabilidad3">★</label> 
+		<input TYPE="radio" id="jugabilidad2" NAME="jugabilidad" VALUE="2"></input> 
+		<label for="jugabilidad2">★</label>
+		<input TYPE="radio" id="jugabilidad1" NAME="jugabilidad" VALUE="1"></input> 
+		<label for="jugabilidad1">★</label>
+		</form>
 
 		<tr><td><b>Te resulta visualmente entretenido?:</b></td></tr> 
 		<tr><td> 
-		<input TYPE="radio" NAME="visual" VALUE="1">1</input> 
-		<input TYPE="radio" NAME="visual" VALUE="2">2</input> 
-		<input TYPE="radio" NAME="visual" VALUE="3">3</input> 
-		<input TYPE="radio" NAME="visual" VALUE="4">4</input> 
-		<input TYPE="radio" NAME="visual" VALUE="5">5</input> 
+		<form class = "clasificacion">
+		<input TYPE="radio" id="visual5" NAME="visual" VALUE="5"></input> 
+		<label for="visual5">★</label>
+		<input TYPE="radio" id="visual4" NAME="visual" VALUE="4"></input> 
+		<label for="visual4">★</label>
+		<input TYPE="radio" id="visual3" NAME="visual" VALUE="3"></input>
+		<label for="visual3">★</label> 
+		<input TYPE="radio" id="visual2" NAME="visual" VALUE="2"></input> 
+		<label for="visual2">★</label>
+		<input TYPE="radio" id="visual1" NAME="visual" VALUE="1"></input> 
+		<label for="visual1">★</label>
+		</form>
+		
 
-
-		<tr><td><b>Recomendarías este juego a algún conocido?:</b></td></tr> 
+		<tr><td><b>Recomendarías este juego a algún conocido?:</b></td></tr>
 		<tr><td> 
-		<input TYPE="radio" NAME="recomendar" VALUE="1">1</input> 
-		<input TYPE="radio" NAME="recomendar" VALUE="2">2</input> 
-		<input TYPE="radio" NAME="recomendar" VALUE="3">3</input> 
-		<input TYPE="radio" NAME="recomendar" VALUE="4">4</input> 
-		<input TYPE="radio" NAME="recomendar" VALUE="5">5</input> 
-
+		<form class = "clasificacion">
+		<input TYPE="radio" id="recomendar5" NAME="recomendar" VALUE="5"></input> 
+		<label for="recomendar5">★</label>
+		<input TYPE="radio" id="recomendar4" NAME="recomendar" VALUE="4"></input> 
+		<label for="recomendar4">★</label>
+		<input TYPE="radio" id="recomendar3" NAME="recomendar" VALUE="3"></input>
+		<label for="recomendar3">★</label> 
+		<input TYPE="radio" id="recomendar2" NAME="recomendar" VALUE="2"></input> 
+		<label for="recomendar2">★</label>
+		<input TYPE="radio" id="recomendar1" NAME="recomendar" VALUE="1"></input> 
+		<label for="recomendar1">★</label>
+		</form>
 		</td></tr> 
  
 		<tr><td><b>Observaciones:</b></td></tr> 
 		<tr><td> 
-		<textarea name="observaciones"  rows="10" cols="50"></textarea> 
+		<textarea name="observaciones"  rows="7" cols="40"></textarea> 
 		</td></tr> 
  
-		<tr><td><INPUT TYPE="checkbox" class="condiciones" NAME="condiciones">Acepta las condiciones<tr><td> 
+		<tr><td><INPUT TYPE="checkbox" id="condiciones" NAME="condiciones">Acepta las condiciones<tr><td> 
  
 		<tr><td><input type="submit" NAME="enviar" VALUE="Enviar" onclick="return validar()"/> 
 		<input type="reset" NAME="borrar" VALUE="Borrar"/></td></tr> 
  
 
  
-	</form> 
+	
 	</table>
 	</div>
 </section> 
