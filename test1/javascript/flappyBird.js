@@ -1,7 +1,5 @@
 
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-
+var ctx;
 
 var pez = function (x,y){
 
@@ -39,29 +37,60 @@ var constant;
 //var competidor.x = 10;
 //var competidor.y = 150;
 
-var gravity = 1.5;
+var gravity = 1.3;
 
 var score = 0;
 
 // audio files
 
-var fly = new Audio();
+var bubble = new Audio();
+var golpe= new Audio();
 var scor = new Audio();
-
-fly.src = "sounds/fly.mp3";
+var musica_juego= new Audio();
+bubble.src = "sounds/bubble.wav";
+golpe.src = "sounds/golpe.mp3"
 scor.src = "sounds/score.mp3";
+musica_juego.src = "sounds/musica_juego.mp3";
+
+musica_juego.play();
 
 // on key down
 
-document.addEventListener("keydown",moveUp);
+document.addEventListener("keydown", function(event) {
 
-function moveUp(){
+    switch(event.which) {
+        case 38:                    
+            moveUp();
+            break;
+        default:
+    }
+});
 
-    competidor.y -= 25;
-    fly.play();
+
+
+window.onload = function(){
+    //cargamos el elemento canvas
+    canvas = document.getElementById("canvas");
+
+     if (canvas && canvas.getContext) {
+        //una vez cargado el elemento, le digo en que contexto trabajaremos, en este caso 2d
+        ctx = canvas.getContext("2d");
+
+        draw();
+
+    
+
+
+        /*iniciallizar los objetos necesarios*/
+        //var jugador = function(x_jugador, y_jugador, dx_jugador, dy_jugador, counter_jugador,  estado_jugador,  ancho_jugador, y_pierna1,  y_pierna2,     alto_torso,  y_cabeza, img_cabeza)
+
+        }else{
+            alert("ERROR: No es compatible.");
+        }
 }
 
-// pipe coordinates
+/*document.addEventListener("keydown",moveUp); */
+
 
 var pipe = [];
 
@@ -70,11 +99,33 @@ pipe[0] = {
     y : 0
 };
 
+function moveUp(){
+
+    competidor.y -= 25;
+    bubble.play();
+    bubble.volume = 0.5;
+} 
+
+// pipe coordinates
+
 // draw images
+
+function crear_fondo(){
+
+    ctx.drawImage(bg,0,0);
+
+}
+
+function pintar_pez(){
+
+
+}
+
+
 
 function draw(){
     
-    ctx.drawImage(bg,0,0);
+    crear_fondo();
     
     
     for(var i = 0; i < pipe.length; i++){
@@ -95,6 +146,7 @@ function draw(){
         // detect collision
         
         if( competidor.x + competidor.imagen.width >= pipe[i].x && competidor.x <= pipe[i].x + pipeNorth.width && (competidor.y <= pipe[i].y + pipeNorth.height || competidor.y+competidor.imagen.height >= pipe[i].y+constant) || competidor.y + competidor.imagen.height >=  canvas.height - fg.height){
+            golpe.play();
             location.reload(); // reload the page
         }
         
@@ -120,7 +172,7 @@ function draw(){
     
 }
 
-draw();
+
 
 
 /*function nextImage(element)
