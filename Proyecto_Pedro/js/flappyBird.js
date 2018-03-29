@@ -1,5 +1,5 @@
 
-var gap = 85;
+var gap = 150;
 var constant;
 
     //var competidor.x = 10;
@@ -53,7 +53,7 @@ var pez = function (x,y){
         this.x = x;
         this.y = y;
         this.imagen = new Image();
-        this.imagen.src = "src/images/bird.png";
+        this.imagen.src = "src/images/magikar1.png";
 
 }
 
@@ -70,8 +70,8 @@ var pez = function (x,y){
     //competidor.src = "images/competidor.png";
     bg.src = "src/images/fondo3.png";
     fg.src = "src/images/fg.png";
-    pipeNorth.src = "src/images/pipeNorth.png";
-    pipeSouth.src = "src/images/pipeSouth.png";
+    pipeNorth.src = "src/images/tubo_Superior.png";
+    pipeSouth.src = "src/images/tubo_Inferior.png";
 
 
     
