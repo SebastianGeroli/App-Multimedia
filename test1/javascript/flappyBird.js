@@ -23,10 +23,10 @@ var pipeNorth = new Image();
 var pipeSouth = new Image();
 
 //competidor.src = "images/competidor.png";
-bg.src = "images/fondo3.png";
-fg.src = "images/fg.png";
-pipeNorth.src = "images/pipeNorth.png";
-pipeSouth.src = "images/pipeSouth.png";
+bg.src = "src/images/fondo3.png";
+fg.src = "src/images/fg.png";
+pipeNorth.src = "src/images/pipeNorth.png";
+pipeSouth.src = "src/images/pipeSouth.png";
 
 
 // some variables
@@ -47,10 +47,10 @@ var bubble = new Audio();
 var golpe= new Audio();
 var scor = new Audio();
 var musica_juego= new Audio();
-bubble.src = "sounds/bubble.wav";
-golpe.src = "sounds/golpe.mp3"
-scor.src = "sounds/score.mp3";
-musica_juego.src = "sounds/musica_juego.mp3";
+bubble.src = "src/sounds/bubble.wav";
+golpe.src = "src/sounds/golpe.mp3"
+scor.src = "src/sounds/score.mp3";
+musica_juego.src = "src/sounds/musica_juego.mp3";
 
 musica_juego.play();
 
@@ -62,27 +62,33 @@ document.addEventListener("keydown", function(event) {
         case 38:                    
             moveUp();
             break;
+
         default:
     }
 });
+
+document.addEventListener("keyup", function(event) {
+
+    switch(event.which) {
+         case 83:                    /*tecla soltda: S */
+            start_stop();
+            break;
+        default:
+
+    }
+
+});
+
 
 
 
 window.onload = function(){
     //cargamos el elemento canvas
-    canvas = document.getElementById("canvas");
+    var canvas = document.getElementById("canvas");
 
      if (canvas && canvas.getContext) {
         //una vez cargado el elemento, le digo en que contexto trabajaremos, en este caso 2d
         ctx = canvas.getContext("2d");
-
-        draw();
-
-    
-
-
-        /*iniciallizar los objetos necesarios*/
-        //var jugador = function(x_jugador, y_jugador, dx_jugador, dy_jugador, counter_jugador,  estado_jugador,  ancho_jugador, y_pierna1,  y_pierna2,     alto_torso,  y_cabeza, img_cabeza)
 
         }else{
             alert("ERROR: No es compatible.");
@@ -106,8 +112,8 @@ function moveUp(){
     bubble.volume = 0.5;
 } 
 
-// pipe coordinates
 
+// pipe coordinat
 // draw images
 
 function crear_fondo(){
@@ -116,14 +122,32 @@ function crear_fondo(){
 
 }
 
-function pintar_pez(){
 
+function play_button_to_game(){
 
+draw();
+
+}
+
+function start_stop(){
+    if(on === 0){
+        on = 1; // encender
+        $("#parapausa").prop('value', 'Pause');
+        $("#info_p1").text("");
+        musica.play();
+    }else{
+        on = 0; // apagar
+        $("#parapausa").prop('value', '  Play  ');
+        $("#info_p1").text("Game Paused. Press S key or Button to continue.");
+        musica.pause();
+    }
 }
 
 
 
 function draw(){
+
+
     
     crear_fondo();
     
@@ -136,7 +160,7 @@ function draw(){
              
         pipe[i].x--;
         
-        if( pipe[i].x == 700 ){
+        if( pipe[i].x == 700){
             pipe.push({
                 x : canvas.width,
                 y : Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height
@@ -153,6 +177,10 @@ function draw(){
         if(pipe[i].x == 5){
             score++;
             scor.play();
+            if(score == 3){
+                musica_juego.pause();
+
+            }
         }
         
         

@@ -131,6 +131,18 @@ p{
   text-align: center;
 }
 
+.margen_negro{
+	
+    margin: auto;
+    background-color: black;
+    width: 900px;
+
+}
+
+.no_mostrar {
+	display: none;
+}
+
 
 #titulo{
   background-color: none;

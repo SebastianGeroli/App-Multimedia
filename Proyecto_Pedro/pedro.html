@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html" charset="utf-8">
-	<title>Document</title>
+	<title>FlappyMagikarp</title>
 	<link rel="stylesheet" type="text/css" href="css/pedro.css" media="screen"/>
 	<script type="text/javascript" src="js/pedro.js"></script>
 
@@ -65,9 +65,18 @@
 </section>
 
 <section id="juego" class="window_not_pulsed">
-	<div class = "div_claro">
-		<input type="button" value="JUGAR" class="push--flat" onclick="play_button_to_game()">
+	<center>
+		<input id="boton" type="button" value="JUGAR" class="push--flat" onclick="play_button_to_game()">
+	</centre>
+
+	<div >
+			<canvas id="canvas" width="900" height="600"> <!-- /*relacion 16:9*/-->
+				ERROR: Tu navegador no compatible con canvas !
+			</canvas>
+
+			
 	</div>
+
 </section>
 
 
@@ -187,6 +196,7 @@
 
 
 
-	
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/flappyBird.js"></script>   	
 </body>
 </html>
