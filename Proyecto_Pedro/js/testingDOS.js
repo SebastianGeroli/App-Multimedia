@@ -11,6 +11,7 @@ var score = 0;
 
 var ctx;
 var competidor;
+var paraPausa;
 
 
 window.onload = function(){
@@ -21,6 +22,7 @@ window.onload = function(){
             //una vez cargado el elemento, le digo en que contexto trabajaremos, en este caso 2d
             ctx = canvas.getContext("2d");
 
+           
           
 
             
@@ -115,6 +117,10 @@ var pez = function (x,y){
     });
 
 
+    var boton_pausa = document.getElementById("boton_pausa");
+    boton_pausa.addEventListener('click', animacion, false);
+
+
 
 
     /*window.onload = function(){
@@ -201,9 +207,10 @@ function draw(){
 
             // detect collision
             
-            if( competidor.x + competidor.imagen.width >= pipe[i].x && competidor.x <= pipe[i].x + pipeNorth.width && (competidor.y <= pipe[i].y + pipeNorth.height || competidor.y+competidor.imagen.height >= pipe[i].y+constant) || competidor.y + competidor.imagen.height >=  canvas.height - fg.height){
+            if(competidor.x + competidor.imagen.width >= pipe[i].x && competidor.x <= pipe[i].x + pipeNorth.width && (competidor.y <= pipe[i].y + pipeNorth.height || competidor.y+competidor.imagen.height >= pipe[i].y+constant) || competidor.y + competidor.imagen.height >=  canvas.height - fg.height){
                 golpe.play();
-                play_button_to_game();
+              
+               
                 /*location.reload(); */// reload the page
             }
             
@@ -229,12 +236,23 @@ function draw(){
         ctx.font = "20px Verdana";
         ctx.fillText("Score : "+score,10,canvas.height-20);
         
-        requestAnimationFrame(draw);
+        paraPausa = window.requestAnimationFrame(draw);
         
 }
 
- 
+function animacion(event){
+    if(this.textContent === "Pausa"){
+        window.cancelAnimationFrame(paraPausa);
+        this.textContent = 'Reanudar';
 
+    }
+    else{
+        window.requestAnimationFrame(draw);
+        this.textContent = 'Pausa';
+
+    }
+
+}
 
 
 
