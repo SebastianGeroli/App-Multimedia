@@ -2,7 +2,7 @@
 var gap = 150;
 var constant;
 var ctx;
-var competidor;
+var pez;
 var gravity = 1;
 var score =0;
 var gameover = 0;
@@ -12,26 +12,17 @@ var size;
 var array_scores = [];
 
 
-var pez = function (x,y){
-
-        this.x = x;
-        this.y = y;
-        this.imagen = new Image();
-        this.imagen.src = "src/images/magikar1.png";
-
-}
-
    
 
     // load images
 
-    //var competidor = new Image(); //suelo_y_fondo()
+    //var pez = new Image(); //suelo_y_fondo()
 var bg = new Image();
 var fg = new Image();
 var pipeNorth = new Image();
 var pipeSouth = new Image();
 
-    //competidor.src = "images/competidor.png";
+    //pez.src = "images/pez.png";
 bg.src = "src/images/fondo3.png";
 fg.src = "src/images/fg.png";
 pipeNorth.src = "src/images/tubo_Superior.png";
@@ -57,9 +48,8 @@ musica_juego.src = "src/sounds/musica_juego.mp3";
 function reinicializar(){
 
 
-	competidor.x = 30;
-	competidor.y = 150;
-	gameover = 0;
+	pez.x = 30;  //volver donde empezo
+	pez.y = 150;
     score = 0;
 
 
@@ -70,7 +60,7 @@ function reinicializar(){
 	     y : 0
 	};
 	
-	size = 0;
+	size = 0;  //tamaño del array de obstaculos que se fueron creando vuelve a zero.
 	
 
 }
@@ -98,7 +88,7 @@ window.onload = function(){
 	     y : 0
 	};
 
-	competidor  =  new pez(30, 150);
+	pez  =  new Pez(10, 150);
 
 
 
@@ -179,7 +169,7 @@ function play_button_to_game(){
 
 function moveUp(){
 
-        competidor.y -= 25;
+        pez.y -= 25;
         bubble.play();
         bubble.volume = 0.5;
 } 
@@ -224,8 +214,8 @@ function pausar_reanudar(event){
     }
 
 }
-var boton_pausa = document.getElementById("boton_pausa");
-boton_pausa.addEventListener('click', pausar_reanudar, false);
+//var boton_pausa = document.getElementById("boton_pausa");
+//boton_pausa.addEventListener('click', pausar_reanudar, false);
 
 
 function draw(){
@@ -264,7 +254,7 @@ function draw(){
 
             // detect collision
             
-            if( competidor.x + competidor.imagen.width >= pipe[i].x && competidor.x <= pipe[i].x + pipeNorth.width && (competidor.y <= pipe[i].y + pipeNorth.height || competidor.y+competidor.imagen.height >= pipe[i].y+constant) || competidor.y + competidor.imagen.height >=  canvas.height - fg.height){
+            if( pez.x + pez.imagen.width >= pipe[i].x && pez.x <= pipe[i].x + pipeNorth.width && (pez.y <= pipe[i].y + pipeNorth.height || pez.y+pez.imagen.height >= pipe[i].y+constant) || pez.y + pez.imagen.height >=  canvas.height - fg.height){
                 golpe.volume = 0.7;
                 golpe.play();
                 array_scores.push(score);
@@ -288,9 +278,9 @@ function draw(){
 
         ctx.drawImage(fg,0,canvas.height - fg.height);
         
-        ctx.drawImage(competidor.imagen,competidor.x,competidor.y);
+        ctx.drawImage(pez.imagen,pez.x,pez.y);
         
-        competidor.y += gravity;
+        pez.y += gravity;
         
         ctx.fillStyle = "#000";
         ctx.font = "20px Verdana";
