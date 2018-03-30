@@ -12,7 +12,7 @@ var size;
 var array_scores = [];
 
 
-   
+
 
     // load images
 
@@ -23,13 +23,13 @@ var pipeNorth = new Image();
 var pipeSouth = new Image();
 
     //pez.src = "images/pez.png";
-bg.src = "src/images/fondo3.png";
+bg.src = "src/images/fondo-4.png";
 fg.src = "src/images/fg.png";
 pipeNorth.src = "src/images/tubo_Superior.png";
 pipeSouth.src = "src/images/tubo_Inferior.png";
 
 
-    
+
 
     // audio files
 
@@ -59,9 +59,9 @@ function reinicializar(){
 	     x : canvas.width,
 	     y : 0
 	};
-	
+
 	size = 0;  //tamaño del array de obstaculos que se fueron creando vuelve a zero.
-	
+
 
 }
 
@@ -69,7 +69,7 @@ function reinicializar(){
 
 window.onload = function(){
 
-	
+
 
 
 	var canvas = document.getElementById("canvas");
@@ -81,7 +81,7 @@ window.onload = function(){
             }else{
                 alert("ERROR: No es compatible.");
             }
-    
+
 
 	 pipe[0] = {
 	     x : canvas.width,
@@ -92,19 +92,19 @@ window.onload = function(){
 
 
 
-   
+
 }
 
 function play_button_to_game(){
 
-	
-	var boton = document.getElementById("boton"); 
+
+	var boton = document.getElementById("boton");
     boton.className = "no_mostrar";
 
     draw();
 
 
- 
+
 
 }
 
@@ -114,21 +114,23 @@ function play_button_to_game(){
   window.requestAnimationFrame = requestAnimationFrame;
 })();
 
-   
 
- 
 
-   
+
+
+
 
     // on key down
 
     document.addEventListener("keydown", function(event) {
 
         switch(event.which) {
-            case 90:                    
+            case 90:
                 moveUp();
                 break;
-
+            case 32:
+                gravityOnOff();
+                break;
             default:
         }
     });
@@ -165,14 +167,22 @@ function play_button_to_game(){
     /*document.addEventListener("keydown",moveUp); */
 
 
-
+function gravityOnOff(){
+  if (gravity == 1){
+    gravity = 0;
+  }else{
+    gravity = 1;
+  }
+}
 
 function moveUp(){
-
-        pez.y -= 25;
+  var total = 0;
+  for(total;total<30;total++){
+    pez.y -= 1;
+  }
         bubble.play();
         bubble.volume = 0.5;
-} 
+}
 
 
     // pipe coordinat
@@ -189,10 +199,10 @@ function colisionado(param){
 
 	pipe.splice(0,param); //borramos el array de pipes que se genero con el for
 
-	
+
 	//cancelAnimationFrame(cancelMe);
 	reinicializar();
-	
+
 
 }
 
@@ -224,22 +234,22 @@ function draw(){
 	  musica_juego.play();
 
 
-        
+
       crear_fondo();
-      
+
         for(var i = 0; i < pipe.length; i++){
-            
+
             constant = pipeNorth.height+gap;
             ctx.drawImage(pipeNorth,pipe[i].x,pipe[i].y);
             ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+constant);
-                 
+
             pipe[i].x--;    //dibujamos y las movemos hacia la iquierda
-            
-            if( pipe[i].x == 700){  // en el pixel 700 le damos una altura aleatoria y lo metemos en el array
+
+            if( pipe[i].x == 600){  // en el pixel 700 le damos una altura aleatoria y lo metemos en el array
                 pipe.push({
                     x : canvas.width,
                     y : Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height  //
-                }); 
+                });
             }
 
             if(pipe[i].x == 30){
@@ -253,49 +263,49 @@ function draw(){
 
 
             // detect collision
-            
+
             if( pez.x + pez.imagen.width >= pipe[i].x && pez.x <= pipe[i].x + pipeNorth.width && (pez.y <= pipe[i].y + pipeNorth.height || pez.y+pez.imagen.height >= pipe[i].y+constant) || pez.y + pez.imagen.height >=  canvas.height - fg.height){
                 golpe.volume = 0.7;
                 golpe.play();
                 array_scores.push(score);
                 size = pipe.length;
                	colisionado(size);
-                
-                
+
+
 
                 /*location.reload(); */// reload the page
           }
-            
-           
-                    
 
-                
-            
-            
+
+
+
+
+
+
         }
 
 
 
         ctx.drawImage(fg,0,canvas.height - fg.height);
-        
+
         ctx.drawImage(pez.imagen,pez.x,pez.y);
-        
+
         pez.y += gravity;
-        
+
         ctx.fillStyle = "#000";
         ctx.font = "20px Verdana";
         ctx.fillText("Score : "+score,10,canvas.height-20);
-        
+
         paraPausa = requestAnimationFrame(draw);
 
-    
+
     }
 
 
 
 
 
- 
+
 
 
 
@@ -319,23 +329,3 @@ function draw(){
         }
     }
     */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
