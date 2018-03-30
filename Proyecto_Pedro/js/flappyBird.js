@@ -1,10 +1,13 @@
 
 var gap = 150;
 var constant;
-var gravity = 1.3;
+var gravity = 1;
 var score = 0;
 var ctx;
 var pez;
+var paraPausa = "";
+var size;
+var array_scores = [];
 // audio files
 var bubble = new Audio();
 var golpe= new Audio();
@@ -14,6 +17,14 @@ bubble.src = "src/sounds/bubble.wav";
 golpe.src = "src/sounds/golpe.mp3";
 scor.src = "src/sounds/score.mp3";
 musica_juego.src = "src/sounds/musica_juego.mp3";
+
+(function() {
+  var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                              window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+  window.requestAnimationFrame = requestAnimationFrame;
+})();
+
+
 
 
 window.onload = function(){
@@ -33,7 +44,11 @@ function play_button_to_game(){
 
     var boton = document.getElementById("boton");
     boton.className = "no_mostrar";
+
+
+
     pez  =  new Pez(10, 150);
+
 
     draw();
 
@@ -114,20 +129,39 @@ function crear_fondo(){
         ctx.drawImage(bg,0,0);
 
 }
+function colisionado(param){
 
-function start_stop(){
-        if(on === 0){
-            on = 1; // encender
-            $("#parapausa").prop('value', 'Pause');
-            $("#info_p1").text("");
-            musica.play();
-        }else{
-            on = 0; // apagar
-            $("#parapausa").prop('value', '  Play  ');
-            $("#info_p1").text("Game Paused. Press S key or Button to continue.");
-            musica.pause();
-        }
+
+    pipe.splice(0,param); //borramos el array de pipes que se genero con el for
+
+    
+    //cancelAnimationFrame(cancelMe);
+    reinicializar();
+    
+
 }
+
+function reinicializar(){  //para volver a los valores iniciales una vez colisionado
+
+
+    pez.x = 10;
+    pez.y = 150;
+    score = 0;
+
+
+    paraPausa = "";
+
+    pipe[0] = {
+         x : canvas.width,
+         y : 0
+    };
+    
+    size = 0;
+    
+
+}
+
+
 
 function draw(){
 
@@ -154,10 +188,14 @@ function draw(){
             // detect collision
 
 
-            if( pez.x + pez.imagen.width >= pipe[i].x && pez.x <= pipe[i].x + pipeNorth.width && (pez.y <= pipe[i].y + pipeNorth.height || pez.y+pez.imagen.height >= pipe[i].y+constant) || pez.y + pez.imagen.height >=  canvas.height - fg.height){
+            /*if( pez.x + pez.imagen.width >= pipe[i].x && pez.x <= pipe[i].x + pipeNorth.width && (pez.y <= pipe[i].y + pipeNorth.height || pez.y+pez.imagen.height >= pipe[i].y+constant) || pez.y + pez.imagen.height >=  canvas.height - fg.height){
+                golpe.volume = 0.7;
                 golpe.play();
-                location.reload(); // reload the page
-            }
+                array_scores.push(score);
+                size = pipe.length;
+                colisionado(size);
+                /*location.reload(); */// reload the page
+            //}
 
             if(pipe[i].x == 5){
                 score++;
@@ -181,6 +219,6 @@ function draw(){
         ctx.font = "20px Verdana";
         ctx.fillText("Score : "+score,10,canvas.height-20);
 
-        requestAnimationFrame(draw);
+        paraPausa = requestAnimationFrame(draw);
 
 }

@@ -11,8 +11,12 @@ var Pez = function (x,y){
               this.y+this.imagen.height >= pipe[i].y+constant) ||
               this.y + this.imagen.height >=  canvas.height - fg.height){
                 console.log("entre");
+                golpe.volume = 0.7;
                 golpe.play();
-                location.reload();
+                array_scores.push(score);
+                size = pipe.length;
+                colisionado(size);
+                
         }
         }
 }
