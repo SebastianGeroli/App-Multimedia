@@ -119,6 +119,14 @@ p{
   margin-top: 10px;
  
 }
+.pre_canvas{
+  margin: auto;
+  background-image: url(../src/images/fondo-4.png);
+  width: 900px;
+  height: 600px;
+  display: block;
+}
+
 .div_claro {
 
   background-color: #140e29;
@@ -126,32 +134,26 @@ p{
   margin-left: 10%;
   margin-right: 10%;
   margin-bottom: 10px;
-  padding:10px; 
+  padding:10px;
+  
   text-align: center;
 }
 
-.boton_pausa{
-   
-  width: 200px;
-  height: 50px;
-  
-  
-}
-
-	
-
-	
-
 .margen_negro{
-	
+  
     margin: auto;
     background-color: black;
     width: 900px;
 
 }
+.mostrar{
+  display: block;
+  height: 600px;
+  width: 900px;
 
+}
 .no_mostrar {
-	display: none;
+  display: none;
 }
 
 
@@ -210,12 +212,14 @@ input[type=button]{
   
 }
 [class*="push"] {
-  position: relative;
+  position: absolute;
   display: inline-block;
   width: 240px;
   height: 240px;
   border: 0;
-  margin: 1em;
+  margin: auto;
+  margin-top: 11%;
+  margin-left: -10.5%;
   outline: none;
   background-color: #c2290a;
   border-radius: 50%;
@@ -337,6 +341,11 @@ input[type="radio"]:checked ~ label {
   bottom: 28px;
   border-width: 0;
 }
+#myVideo{
+  margin-top: 25px;
+  width:500;
+  height: 500;
+}
 
 @-webkit-keyframes bounceIn {
   from,
@@ -427,3 +436,4 @@ input[type="radio"]:checked ~ label {
     transform: scale3d(1, 1, 1);
   }
 }
+
