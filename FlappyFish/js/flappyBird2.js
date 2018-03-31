@@ -27,6 +27,9 @@ var paraPausa = "";
 var size;
 var array_scores = [];
 var bg = [];
+var puntos = 0;
+var velocidad_pipe = 1;
+var subida = 30;
 //Funcion que mnuestra el fondo en pantalla en base a un source de imagen
 var generador_de_fondos = function(source){
 
@@ -36,8 +39,15 @@ var generador_de_fondos = function(source){
 
 };
 //Añadir fondos al arry background "bg"
-bg.push(generador_de_fondos("src/images/fondo-4.png"));
-bg.push(generador_de_fondos("src/images/fondoColor4.png"));
+bg.push(generador_de_fondos("src/images/fondo-4.png"));  // 0
+bg.push(generador_de_fondos("src/images/fondoColor4.png")); // 1
+bg.push(generador_de_fondos("src/images/fondoColor5.png"));  // 2
+bg.push(generador_de_fondos("src/images/fondo-3.png")); // 3
+bg.push(generador_de_fondos("src/images/fondoColor1.png")); // 4
+bg.push(generador_de_fondos("src/images/fondo-1.png")); // 5
+bg.push(generador_de_fondos("src/images/fondo-2.png")); // 6
+bg.push(generador_de_fondos("src/images/fondoColor3.png")); // 7
+bg.push(generador_de_fondos("src/images/fondoColor2.png"));  // 8
 //Funcion que vuelve a iniciar el juego al incio una vez que se pierde
 function reinicializar(){
 	pez.x = 10;  //volver donde empezo
@@ -100,11 +110,32 @@ function play_button_to_game(){
             default:
         }
     });
-  /*  document.addEventListener("keyup", function(event) {
-        switch(event.which) {
-            default:
-        }
-    });*/
+//Funcion que cambia la velocidad en base al puntaje
+		function cambiar_velocidad(punt){
+		    if(punt > 3){
+		        velocidad_pipe+=2;
+		        gravity +=1;
+		        subida = 40;
+		    }
+		}
+//Funcion que cambia el fondo en base al puntaje
+		function cambiar_fondo(punt){
+		    if(punt == 0){
+		        crear_fondo(0);
+		    }
+		    if(punt == 1){
+		        crear_fondo(1);
+		    }
+		    if(punt== 2){
+		        crear_fondo(2);
+		    }
+		    if(punt== 3){
+		        crear_fondo(3);
+		    }
+		    if(punt > 3){
+		        crear_fondo(4);
+		    }
+		}
 //Funcion que para o activa la gravedad, usada mayormente para debug
 function gravityOnOff(){
   if (gravity == 1){
@@ -147,7 +178,8 @@ function startAnimation(event){
 //Funcion encargada de dibujar todo
 function draw(){
 	   musica_juego.play();
-       crear_fondo(0);
+		 cambiar_fondo(puntos);
+		 cambiar_velocidad(puntos);
        //--------------Generamos tuberias, las metemos en array y su altura la ponemos aleatoria ------
         for(var i = 0; i < pipe.length; i++){
             constant = pipeNorth.height+gap;
