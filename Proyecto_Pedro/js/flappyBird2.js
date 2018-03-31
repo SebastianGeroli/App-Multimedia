@@ -10,20 +10,37 @@ var pipe = [];
 var paraPausa = "";
 var size;
 var array_scores = [];
+var bg = [];
 
 
 
+
+
+var generador_de_fondos = function(source){
+
+	var ref = new Image();
+	ref.src = source;
+	return ref;
+
+};
+
+bg.push(generador_de_fondos("src/images/fondo-4.png"));  // [fondo3, fondo4, ... ,]
+bg.push(generador_de_fondos("src/images/fondoColor4.png"));
+
+   
 
     // load images
 
-    //var pez = new Image(); //suelo_y_fondo()
-var bg = new Image();
+
 var fg = new Image();
 var pipeNorth = new Image();
 var pipeSouth = new Image();
 
     //pez.src = "images/pez.png";
-bg.src = "src/images/fondo-4.png";
+
+
+
+
 fg.src = "src/images/fg.png";
 pipeNorth.src = "src/images/tubo_Superior.png";
 pipeSouth.src = "src/images/tubo_Inferior.png";
@@ -48,7 +65,7 @@ musica_juego.src = "src/sounds/musica_juego.mp3";
 function reinicializar(){
 
 
-	pez.x = 30;  //volver donde empezo
+	pez.x = 10;  //volver donde empezo
 	pez.y = 150;
     score = 0;
 
@@ -61,6 +78,10 @@ function reinicializar(){
 	};
 
 	size = 0;  //tamaño del array de obstaculos que se fueron creando vuelve a zero.
+
+	
+	crear_fondo(0);
+
 
 
 }
@@ -98,9 +119,16 @@ window.onload = function(){
 function play_button_to_game(){
 
 
-	var boton = document.getElementById("boton");
-    boton.className = "no_mostrar";
 
+	var canvas1 = document.getElementById("canvas");
+    canvas1.className = "mostrar";
+
+
+	
+	var boton = document.getElementById("boton"); 
+	boton.className = "no_mostrar";
+    
+   
     draw();
 
 
@@ -139,13 +167,14 @@ function play_button_to_game(){
 
         switch(event.which) {
              case 83:                    /*tecla soltda: S */
-                start_stop();
+                startAnimation();
                 break;
             default:
 
         }
 
     });
+
 
 
 
@@ -175,6 +204,7 @@ function gravityOnOff(){
   }
 }
 
+
 function moveUp(){
   var total = 0;
   for(total;total<30;total++){
@@ -188,11 +218,23 @@ function moveUp(){
     // pipe coordinat
     // draw images
 
-function crear_fondo(){
+function crear_fondo(pos){
 
-    ctx.drawImage(bg,0,0);
+    ctx.drawImage(bg[pos],0,0);
 
 }
+/*
+function cambiar_fondo(){
+    if(score == 0){
+        crear_fondo(0);
+    }
+
+    if(score == 2){
+        crear_fondo(1);
+    }
+
+
+}*/
 
 function colisionado(param){
 
@@ -206,24 +248,20 @@ function colisionado(param){
 
 }
 
-function cambiarFondo(){
 
+function startAnimation(event){
+            if(this.textContent === "Start"){
+                requestAnimationFrame(draw);
+                this.textContent = 'Pause';
+            }
+            else{
+                cancelAnimationFrame(paraPausa);
+                this.textContent = 'Start';
 
-}
+            }
 
-function pausar_reanudar(event){
-    if(this.textContent === "Pausa"){
-        window.cancelAnimationFrame(paraPausa)
-        this.textContent = 'Reanudar';
+        }
 
-    }
-    else{
-        window.requestAnimationFrame(draw);
-        this.textContent = 'Pausa';
-
-    }
-
-}
 //var boton_pausa = document.getElementById("boton_pausa");
 //boton_pausa.addEventListener('click', pausar_reanudar, false);
 
@@ -231,11 +269,19 @@ function pausar_reanudar(event){
 function draw(){
 
 
-	  musica_juego.play();
 
 
+	   musica_juego.play();
+       crear_fondo(0);
+       
+     
+    
 
-      crear_fondo();
+
+        
+       //--------------Generamos tuberias, las metemos en array y su altura la ponemos aleatoria ------
+    
+
 
         for(var i = 0; i < pipe.length; i++){
 
@@ -255,11 +301,9 @@ function draw(){
             if(pipe[i].x == 30){
                 score++;
                 scor.play();
-                if(score == 3){
-
-
-                }
             }
+            
+            
 
 
             // detect collision
@@ -273,7 +317,6 @@ function draw(){
 
 
 
-                /*location.reload(); */// reload the page
           }
 
 
@@ -284,11 +327,18 @@ function draw(){
 
         }
 
+         // --------------- Generamos el magikarp y el suele --------
 
+
+        ctx.drawImage(fg,0,canvas.height - fg.height);   // dibujamos el suelo
+        
+        ctx.drawImage(pez.imagen,pez.x,pez.y);  //dibujamos el pez
+        
 
         ctx.drawImage(fg,0,canvas.height - fg.height);
 
         ctx.drawImage(pez.imagen,pez.x,pez.y);
+
 
         pez.y += gravity;
 
