@@ -4,6 +4,7 @@ var Pez = function (x,y){
         this.y = y;
         this.imagen = new Image();
         this.imagen.src = "src/images/magikar1.png";
+        //Funcion del pez que detecta las colisiones con los pipes y el suelo
         this.collision = function(i){
           if( this.x + this.imagen.width >= pipe[i].x &&
             this.x <= pipe[i].x + pipeNorth.width &&
@@ -16,7 +17,7 @@ var Pez = function (x,y){
                 array_scores.push(score);
                 size = pipe.length;
                 colisionado(size);
-                
+
         }
         }
 }
