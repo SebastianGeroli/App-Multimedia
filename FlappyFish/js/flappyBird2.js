@@ -27,7 +27,6 @@ var paraPausa = "";
 var size;
 var array_scores = [];
 var bg = [];
-var puntos = 0;
 var velocidad_pipe = 1;
 var subida = 30;
 //Funcion que mnuestra el fondo en pantalla en base a un source de imagen
@@ -54,6 +53,7 @@ function reinicializar(){
 	pez.y = 150;
     score = 0;
     paraPausa = "";
+    velocidad_pipe=1;
 
     pipe[0] = {
 	     x : canvas.width,
@@ -104,17 +104,17 @@ function play_button_to_game(){
             case 32:/*tecla: SPACE */
                 gravityOnOff();
                 break;
-						case 83:/*tecla: S */
-									 startAnimation();
-									 break;
+			case 83:/*tecla: S */
+				startAnimation();
+				break;
             default:
         }
     });
 //Funcion que cambia la velocidad en base al puntaje
 		function cambiar_velocidad(punt){
-		    if(punt > 3){
-		        velocidad_pipe+=2;
-		        gravity +=1;
+		    if(punt > 1){
+		        velocidad_pipe+=1;
+		        //gravity +=0.1;
 		        subida = 40;
 		    }
 		}
@@ -147,7 +147,7 @@ function gravityOnOff(){
 //Funcion que hace subir al pez y reproduce un sonido al ser llamada.
 function moveUp(){
   var total = 0;
-  for(total;total<30;total++){
+  for(total;total<subida;total++){
     pez.y -= 1;
   }
         bubble.play();
@@ -177,15 +177,15 @@ function startAnimation(event){
         }
 //Funcion encargada de dibujar todo
 function draw(){
-	   musica_juego.play();
-		 cambiar_fondo(puntos);
-		 cambiar_velocidad(puntos);
+	     musica_juego.play();
+		 cambiar_fondo(score);
+		 cambiar_velocidad(score);
        //--------------Generamos tuberias, las metemos en array y su altura la ponemos aleatoria ------
         for(var i = 0; i < pipe.length; i++){
             constant = pipeNorth.height+gap;
             ctx.drawImage(pipeNorth,pipe[i].x,pipe[i].y);
             ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+constant);
-            pipe[i].x--;    //dibujamos y las movemos hacia la iquierda
+            pipe[i].x-=velocidad_pipe;    //dibujamos y las movemos hacia la iquierda
             if( pipe[i].x == 600){  // en el pixel 700 le damos una altura aleatoria y lo metemos en el array
                 pipe.push({
                     x : canvas.width,
@@ -195,9 +195,10 @@ function draw(){
             if(pipe[i].x == 30){
                 score++;
                 scor.play();
+
             }
             //Funcion dentro del pez que detecta colisiones
-						pez.collision(i);
+			pez.collision(i);
         }
          // --------------- Generamos el magikarp y el suelo --------
         ctx.drawImage(fg,0,canvas.height - fg.height);   // dibujamos el suelo
