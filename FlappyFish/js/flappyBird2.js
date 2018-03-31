@@ -19,7 +19,7 @@ var gap = 150;
 var constant;
 var ctx;
 var pez;
-var gravity = 1;
+//var gravity = 1;
 var score =0;
 var gameover = 0;
 var pipe = [];
@@ -29,6 +29,11 @@ var array_scores = [];
 var bg = [];
 var velocidad_pipe = 1;
 var subida = 30;
+var fpsCounter = Date.now(); //temporizador para restringir el refresco del sprite
+fps = 30;
+
+var fallingCounter = Date.now(); //temporizador para caida del pez
+
 //Funcion que mnuestra el fondo en pantalla en base a un source de imagen
 var generador_de_fondos = function(source){
 
@@ -37,7 +42,7 @@ var generador_de_fondos = function(source){
 	return ref;
 
 };
-//Añadir fondos al arry background "bg"
+//Añadir fondos al array background "bg"
 bg.push(generador_de_fondos("src/images/fondo-4.png"));  // 0
 bg.push(generador_de_fondos("src/images/fondoColor4.png")); // 1
 bg.push(generador_de_fondos("src/images/fondoColor5.png"));  // 2
@@ -78,7 +83,9 @@ var canvas = document.getElementById("canvas");
 	     y : 0
 	};
 	//Inicializacion objeto "pez" en las coordenadas 10,150
-	pez  =  new Pez(10, 150);
+   pez  =  new Pez(10, 150);
+
+  
 }
 //Funcion que muestra el boton y el canvas de fondo
 function play_button_to_game(){
@@ -95,11 +102,16 @@ function play_button_to_game(){
                               window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
   window.requestAnimationFrame = requestAnimationFrame;
 })();
+
+
+
+
 //Evento que escucha que teclas esta ingresando el usuario, y en base a que tecla es presionada entra a su case
     document.addEventListener("keydown", function(event) {
         switch(event.which) {
             case 90:/*tecla: Z */
-                moveUp();
+                //moveUp();
+                pez.salto();
                 break;
             case 32:/*tecla: SPACE */
                 gravityOnOff();
@@ -138,10 +150,10 @@ function play_button_to_game(){
 		}
 //Funcion que para o activa la gravedad, usada mayormente para debug
 function gravityOnOff(){
-  if (gravity == 1){
-    gravity = 0;
+  if (pez.gravedad == 0.1){
+    pez.gravedad = 0;
   }else{
-    gravity = 1;
+    pez.gravedad = 0.1;
   }
 }
 //Funcion que hace subir al pez y reproduce un sonido al ser llamada.
@@ -202,10 +214,19 @@ function draw(){
         }
          // --------------- Generamos el magikarp y el suelo --------
         ctx.drawImage(fg,0,canvas.height - fg.height);   // dibujamos el suelo
-        ctx.drawImage(pez.imagen,pez.x,pez.y);  //dibujamos el pez
+       // ctx.drawImage(pez.imagen,pez.x,pez.y);  //dibujamos el pez
+
+        //render player
+        ctx.drawImage(pez.imagen, pez.getNextFrame() * pez.width, 0, //inicio de la imagen estatica
+        pez.width, pez.height, //final de la imagen estatica
+        pez.x, pez.y, //posicion del pez
+        pez.width, pez.height); //tamaño de la imagen sprite 
+
+        pez.caida();
+
         ctx.drawImage(fg,0,canvas.height - fg.height);
-        ctx.drawImage(pez.imagen,pez.x,pez.y);
-        pez.y += gravity;
+        //ctx.drawImage(pez.imagen,pez.x,pez.y);
+      //  pez.y += gravity;
         ctx.fillStyle = "#000";
         ctx.font = "20px Verdana";
         ctx.fillText("Score : "+score,10,canvas.height-20);
