@@ -27,7 +27,8 @@ var paraPausa = "";
 var size;
 var array_scores = [];
 var bg = [];
-var velocidad_pipe = 1;
+var estrellas = [];
+var peces = [];
 var subida = 30;
 //Funcion que mnuestra el fondo en pantalla en base a un source de imagen
 var generador_de_fondos = function(source){
@@ -36,8 +37,12 @@ var generador_de_fondos = function(source){
 	ref.src = source;
 	return ref;
 
-};
-//Añadir fondos al arry background "bg"
+}
+//Añadir imagenes al array estrellas
+estrellas.push(generador_de_fondos("src/images/cropped-seastar2.png"));
+estrellas.push(generador_de_fondos("src/images/cropped-seastar3.png"));
+estrellas.push(generador_de_fondos("src/images/cropped-seastar4.png"));
+//Añadir fondos al array background "bg"
 bg.push(generador_de_fondos("src/images/fondo-4.png"));  // 0
 bg.push(generador_de_fondos("src/images/fondoColor4.png")); // 1
 bg.push(generador_de_fondos("src/images/fondoColor5.png"));  // 2
@@ -53,11 +58,12 @@ function reinicializar(){
 	pez.y = 150;
     score = 0;
     paraPausa = "";
-    velocidad_pipe=1;
 
     pipe[0] = {
 	     x : canvas.width,
-	     y : 0
+	     y : 0,
+         paso : 0,
+         paso2: 0
 	};
 	size = 0;  //tamaño del array de obstaculos que se fueron creando vuelve a zero.
 	crear_fondo(0);
@@ -75,7 +81,10 @@ var canvas = document.getElementById("canvas");
 //inicializacion del array pipe
 	 pipe[0] = {
 	     x : canvas.width,
-	     y : 0
+	     y : 0,
+         paso : 0,
+         paso2 : 0
+         
 	};
 	//Inicializacion objeto "pez" en las coordenadas 10,150
 	pez  =  new Pez(10, 150);
@@ -110,14 +119,11 @@ function play_button_to_game(){
             default:
         }
     });
-//Funcion que cambia la velocidad en base al puntaje
-		function cambiar_velocidad(punt){
-		    if(punt > 1){
-		        velocidad_pipe+=1;
-		        //gravity +=0.1;
-		        subida = 40;
-		    }
-		}
+//Funcion que crea estrellas en el piso
+function drawEstrellas(){
+    ctx.drawImage(estrellas[Math.floor(Math.random()*estrellas.length)],Math.floor(Math.random()*901)+1,Math.floor(Math.random()*118)+482);
+    
+}
 //Funcion que cambia el fondo en base al puntaje
 		function cambiar_fondo(punt){
 		    if(punt == 0){
@@ -176,25 +182,31 @@ function startAnimation(event){
             }
         }
 //Funcion encargada de dibujar todo
+setTimeout(drawEstrellas,1000);
 function draw(){
 	     musica_juego.play();
 		 cambiar_fondo(score);
-		 cambiar_velocidad(score);
        //--------------Generamos tuberias, las metemos en array y su altura la ponemos aleatoria ------
         for(var i = 0; i < pipe.length; i++){
             constant = pipeNorth.height+gap;
             ctx.drawImage(pipeNorth,pipe[i].x,pipe[i].y);
             ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+constant);
-            pipe[i].x-=velocidad_pipe;    //dibujamos y las movemos hacia la iquierda
-            if( pipe[i].x == 600){  // en el pixel 700 le damos una altura aleatoria y lo metemos en el array
-                pipe.push({
+            pipe[i].x--;    //dibujamos y las movemos hacia la iquierda
+            if( pipe[i].x <= 600){  // en el pixel 700 le damos una altura aleatoria y lo metemos en el array
+                if(pipe[i].paso=== 0){
+                   pipe.push({
                     x : canvas.width,
-                    y : Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height  //
-                });
+                    y : Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height,  //
+                    paso : 0,
+                    paso2: 0
+                }); 
+                    pipe[i].paso = 1;
+                }
             }
-            if(pipe[i].x == 30){
+            if(pipe[i].x <= 30 && pipe[i].paso2==0){
                 score++;
                 scor.play();
+                pipe[i].paso2 = 1;
 
             }
             //Funcion dentro del pez que detecta colisiones
@@ -203,8 +215,6 @@ function draw(){
          // --------------- Generamos el magikarp y el suelo --------
         ctx.drawImage(fg,0,canvas.height - fg.height);   // dibujamos el suelo
         ctx.drawImage(pez.imagen,pez.x,pez.y);  //dibujamos el pez
-        ctx.drawImage(fg,0,canvas.height - fg.height);
-        ctx.drawImage(pez.imagen,pez.x,pez.y);
         pez.y += gravity;
         ctx.fillStyle = "#000";
         ctx.font = "20px Verdana";
