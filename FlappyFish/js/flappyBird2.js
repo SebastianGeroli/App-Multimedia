@@ -15,6 +15,8 @@ fg.src = "src/images/fg.png";
 pipeNorth.src = "src/images/tubo_Superior.png";
 pipeSouth.src = "src/images/tubo_Inferior.png";
 //Variables Globales del juego
+var puntajeViejo=0;
+var nFondo=0;
 var gap = 150;
 var constant;
 var ctx;
@@ -42,15 +44,11 @@ var generador_de_fondos = function(source){
 	ref.src = source;
 	return ref;
 
-<<<<<<< HEAD
-};
-=======
 }
 //Añadir imagenes al array estrellas
 estrellas.push(generador_de_fondos("src/images/cropped-seastar2.png"));
 estrellas.push(generador_de_fondos("src/images/cropped-seastar3.png"));
 estrellas.push(generador_de_fondos("src/images/cropped-seastar4.png"));
->>>>>>> 4c79cbbeb01c90e7385bae2e25f835e9881bf4d4
 //Añadir fondos al array background "bg"
 bg.push(generador_de_fondos("src/images/fondo-4.png"));  // 0
 bg.push(generador_de_fondos("src/images/fondoColor4.png")); // 1
@@ -74,8 +72,8 @@ function reinicializar(){
          paso : 0,
          paso2: 0
 	};
-	size = 0;  //tamaño del array de obstaculos que se fueron creando vuelve a zero.
-	crear_fondo(0);
+    size = 0;  //tamaño del array de obstaculos que se fueron creando vuelve a zero.
+    crear_fondo(nFondo);
 }
 //Al cargarse la pagina completa, inicializa esta funcion
 window.onload = function(){
@@ -140,24 +138,7 @@ function drawEstrellas(){
     ctx.drawImage(estrellas[Math.floor(Math.random()*estrellas.length)],Math.floor(Math.random()*901)+1,Math.floor(Math.random()*118)+482);
     
 }
-//Funcion que cambia el fondo en base al puntaje
-		function cambiar_fondo(punt){
-		    if(punt == 0){
-		        crear_fondo(0);
-		    }
-		    if(punt == 1){
-		        crear_fondo(1);
-		    }
-		    if(punt== 2){
-		        crear_fondo(2);
-		    }
-		    if(punt== 3){
-		        crear_fondo(3);
-		    }
-		    if(punt > 3){
-		        crear_fondo(4);
-		    }
-		}
+
 //Funcion que para o activa la gravedad, usada mayormente para debug
 function gravityOnOff(){
   if (pez.gravedad == 0.1){
@@ -181,6 +162,19 @@ function crear_fondo(pos){
     ctx.drawImage(bg[pos],0,0);
 
 }
+//Funcion que cambia el fondo en base al puntaje
+function cambiar_fondo(punt){
+    if(punt>puntajeViejo){
+        console.log("cambie el fondo");
+        crear_fondo(nFondo);
+        nFondo++;
+        if(nFondo>= bg.length){
+            nFondo = 0;
+        }
+    }
+            puntajeViejo = punt;    
+                
+            }
 //Funcion que al haber colisionado borra todo lo que se encuentra en el array pipe y llama al metodo reinicializar
 function colisionado(param){
 	pipe.splice(0,param); //borramos el array de pipes que se genero con el for
@@ -230,7 +224,6 @@ function draw(){
         }
          // --------------- Generamos el magikarp y el suelo --------
         ctx.drawImage(fg,0,canvas.height - fg.height);   // dibujamos el suelo
-<<<<<<< HEAD
        // ctx.drawImage(pez.imagen,pez.x,pez.y);  //dibujamos el pez
 
         //render player
@@ -238,18 +231,16 @@ function draw(){
         pez.width, pez.height, //final de la imagen estatica
         pez.x, pez.y, //posicion del pez
         pez.width, pez.height); //tamaño de la imagen sprite 
+        
 
         pez.caida();
 
         ctx.drawImage(fg,0,canvas.height - fg.height);
         //ctx.drawImage(pez.imagen,pez.x,pez.y);
       //  pez.y += gravity;
-=======
-        ctx.drawImage(pez.imagen,pez.x,pez.y);  //dibujamos el pez
-        pez.y += gravity;
->>>>>>> 4c79cbbeb01c90e7385bae2e25f835e9881bf4d4
         ctx.fillStyle = "#000";
         ctx.font = "20px Verdana";
         ctx.fillText("Score : "+score,10,canvas.height-20);
         paraPausa = requestAnimationFrame(draw);
+        
     }
