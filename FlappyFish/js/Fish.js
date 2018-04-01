@@ -1,10 +1,10 @@
-    
+
 var Pez = function (x,y){
 
         this.x = x;
         this.y = y;
         this.width = 64;
-        this.height = 64;       
+        this.height = 64;
         this._currentFrame = 0,
         this.imagen = new Image();
         this.imagen.src = "src/images/player.png";
@@ -20,8 +20,8 @@ var Pez = function (x,y){
           }
           return this._currentFrame;
       }
-    
-      
+
+
       this.salto = function() {
         this.velocidad = -2;
     },
@@ -40,8 +40,9 @@ var Pez = function (x,y){
               this.y+this.imagen.height >= pipe[i].y+constant) ||
               this.y + this.imagen.height >=  canvas.height - fg.height){
                 console.log("entre");
-                golpe.volume = 0.7;
+                golpe.volume = 0.6;
                 golpe.play();
+                risas.play();
                 array_scores.push(score);
                 size = pipe.length;
                 colisionado(size);
