@@ -4,7 +4,6 @@
 	<meta http-equiv="content-type" content="text/html" charset="utf-8">
 	<title>FlappyMagikarp</title>
 	<link rel="stylesheet" type="text/css" href="css/pedro.css" media="screen"/>
-	<script type="text/javascript" src="js/Sounds.js"></script>
 	<script type="text/javascript" src="js/Fish.js"></script>
 	<script type="text/javascript" src="js/flappyBird2.js"></script>
 	<script type="text/javascript" src="js/paginaWeb.js"></script>
@@ -14,9 +13,9 @@
 </head>
 <body>
 
-	<img id = "logoPopstar" src="src/popstar.png">
-	<img id="imgMario" src="src/mario1.gif">
-	<img id="imgPlanta" src="src/planta.gif">
+	<img id = "logoPopstar" src="src/images/popstar.png">
+	<img id="imgMario" src="src/images/mario1.gif">
+	<img id="imgPlanta" src="src/images/planta.gif">
 
 	<header id = "titulo">
 		<H1 id = "title1">POPSTAR TESTING</H1>
@@ -26,7 +25,7 @@
   <div id = "navmenu">
 	<ul>
     <li><span id = "option_home" class="option_pulsed" onclick="change_class_home()">HOME</span></li>
-    <li><span id = "option_info" class="option_not_pulsed" onclick="change_class_info()">QUIENES SOMOS</span></li>
+    <li><span id = "option_info" class="option_not_pulsed" onclick="change_class_info()">TRAILER</span></li>
     <li><span id = "option_como_jugar" class="option_not_pulsed" onclick="change_class_como_jugar()">INSTRUCCIONES</span></li>
     <li><span id = "option_juego" class="option_not_pulsed" onclick="change_class_juego()">JUEGO</span></li>
     <li><span id = "option_opiniones" class="option_not_pulsed" onclick="change_class_opiniones()">OPINIONES</span></li>
@@ -37,7 +36,16 @@
 <section id="principal" style="position:relative">
 	<section id ="home" class="window_pulsed">
 		<div class = "div_claro">
-			BLA BLA BLA PAGINA DE INICIO
+			<h1>BIENVENIDOS A POPSTAR TESTING</h1>
+			<p>Somos una empresa que se dedica a crear juegos y permitimos que los usuarios los prueben, los valoren y puedan hacer observaciones sobre ellos.</p>
+			<p>También publicamos juegos de otros desarrolladores con el fin ofrecerles una crítica constructiva mediante nuestro sistema de evaluación </p>
+			<p>Actualmente estamos presentando un nuevo juego que esperamos que triunfe. Se trata de Flappy Fish y estás invitado a probarlo.</p>
+			<p>Por favor, despues de probar el juego, no se te olvide entrar en el apartado OPINIONES en el que valorarás el juego y beneficiarás a muchos desarrolladores!.</p>
+			<p>Esta es la historia de un pez llamado Faustino, nació con una enfermedad incurable y solo sabe nadar hacia arriba.
+			El resto de peces se rien de el por ser diferente, pero Faustino quiere demostrar que el puede ser un pez más.
+			</p>
+			<p> Conviértete en Faustino y demuéstrales a todos los peces todo lo lejos que puedes llegar. Pero ten cuidado, por el camino te econtrarás obstáculos que deberás esquivar, de lo contrario perderás tu reputación y seguirás siendo el hazmereir de las demás especies! </p>
+
 		</div>
 
 	</section>
@@ -45,8 +53,8 @@
 <section id = "info" class="window_not_pulsed">
 
 	<div class = "div_claro">
-		<h2>QUIENES SOMOS</h2>
-		<p> Empresa que testea videojuegos, probar videojuegos y al final hay un apartado de opiniones en el que el cliente puntua y valora el juego segun su experiencia en el. </p>
+		<h1>TRAILER</h1>
+		<p> AQUI OS DEJAMOS UN PEQUEÑO SPOT DEL JUEGO !! </p>
 
 	</div>
 </section>
@@ -54,16 +62,24 @@
 <section id = "como_jugar" class="window_not_pulsed">
 
 	<div class = "div_claro">
-		<h2>CÓMO JUGAR</h2>
-		<p>Esta es la historia de un pez llamado Faustino, nació con una enfermedad incurable y solo sabe nadar hacia arriba.
-		El resto de peces se rien de el por ser diferente, pero Faustino quiere demostrar que el puede ser un pez más.
-		</p>
+		<h1>INSTRUCCIONES</h2></br>
+		<img id = "teclaP" src="src/images/tecla.gif">
+		<img id = "teclaZ" src="src/images/tecla.gif">
+		<h2>PULSA Z</h2>
+		<p>Pulsando la tecla Z haces que faustino se impulse hacia arriba.
+		</br></br></br></br></br>
+		</br>
+		</p></br>
 
-		<p> Conviértete en Faustino y demuéstrales a todos los peces todo lo lejos que puedes llegar. Pero ten cuidado, por el camino hay tuberías y no te puedes chocar con ellas ni caerte al suelo, o el resto de los peces se reiran de ti. </p>
+		<h2>PULSA S</h2>
+		<p>Pulsando la tecla S puedes pausar el juego,</br>
+		pulsa la tecla S para volver a reanudarlo.</p>
 
-		<p> Cómo nadar:</p>
-		<p>Muy simple. Solo tienes que pulsar la flecha de arriba y con eso impulsarás a Faustino en esa dirección.
-		Ten en cuenta que debido a la enfermedad de Faustino, siempre va a dejarse caer hacia abajo.</p>
+		<img id = "arrow_up" src="src/images/up.gif">
+		<img id = "pez" src="src/images/magikarp.gif">
+
+
+
 	</div>
 </section>
 
@@ -71,6 +87,7 @@
 	<center id = "center1" class = "pre_canvas">
 		<input id="boton" type="button" value="JUGAR" class="push--flat" onclick="play_button_to_game()">
 		<input id="boton_reiniciar" type="button" value="RESET" class="no_mostrar" onclick="play_button_to_reset()">
+
 
 	<div >
 			<canvas id="canvas" class = "no_mostrar" width="900" height="600"> <!-- /*relacion 16:9*/-->
@@ -200,7 +217,7 @@
 
 
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
 

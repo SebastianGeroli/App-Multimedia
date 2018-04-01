@@ -3,10 +3,16 @@ var bubble = new Audio();
 var golpe= new Audio();
 var scor = new Audio();
 var musica_juego= new Audio();
+var tiburon1 = new Audio();
+var risas = new Audio();
+
+tiburon1.src = "src/sounds/tiburon1.mp3";
+risas.src = "src/sounds/risa.wav";
 bubble.src = "src/sounds/bubble.wav";
 golpe.src = "src/sounds/golpe.mp3";
 scor.src = "src/sounds/score.mp3";
 musica_juego.src = "src/sounds/musica_juego.mp3";
+musica_juego.volume=0.6;
 //Inicializacion de las Imagenes
 var fg = new Image();
 var pipeNorth = new Image();
@@ -21,6 +27,7 @@ var ctx;
 var pez;
 //var gravity = 1;
 var score =0;
+var tib1;
 var gameover = 0;
 var pipe = [];
 var paraPausa = "";
@@ -42,15 +49,15 @@ var generador_de_fondos = function(source){
 	ref.src = source;
 	return ref;
 
-<<<<<<< HEAD
+
 };
-=======
-}
+
+
 //Añadir imagenes al array estrellas
 estrellas.push(generador_de_fondos("src/images/cropped-seastar2.png"));
 estrellas.push(generador_de_fondos("src/images/cropped-seastar3.png"));
 estrellas.push(generador_de_fondos("src/images/cropped-seastar4.png"));
->>>>>>> 4c79cbbeb01c90e7385bae2e25f835e9881bf4d4
+
 //Añadir fondos al array background "bg"
 bg.push(generador_de_fondos("src/images/fondo-4.png"));  // 0
 bg.push(generador_de_fondos("src/images/fondoColor4.png")); // 1
@@ -66,7 +73,11 @@ function reinicializar(){
 	pez.x = 10;  //volver donde empezo
 	pez.y = 150;
     score = 0;
+		musica_juego.pause();
+		musica_juego.currentTime = 0;
     paraPausa = "";
+		clearInterval(tib1);
+
 
     pipe[0] = {
 	     x : canvas.width,
@@ -93,12 +104,12 @@ var canvas = document.getElementById("canvas");
 	     y : 0,
          paso : 0,
          paso2 : 0
-         
+
 	};
 	//Inicializacion objeto "pez" en las coordenadas 10,150
    pez  =  new Pez(10, 150);
 
-  
+
 }
 //Funcion que muestra el boton y el canvas de fondo
 function play_button_to_game(){
@@ -107,7 +118,7 @@ function play_button_to_game(){
 
 	var boton = document.getElementById("boton");
 	boton.className = "no_mostrar";
-    draw();
+  draw();
 }
 //Funcion que busca que tipo de resquestAnimationFrame usa el navegador que usa el usuario y lo utiliza
 (function() {
@@ -138,8 +149,15 @@ function play_button_to_game(){
 //Funcion que crea estrellas en el piso
 function drawEstrellas(){
     ctx.drawImage(estrellas[Math.floor(Math.random()*estrellas.length)],Math.floor(Math.random()*901)+1,Math.floor(Math.random()*118)+482);
-    
+
 }
+
+function sonido_ambiente1(){
+	tiburon1.volume=0.8;
+	tiburon1.play();
+}
+
+
 //Funcion que cambia el fondo en base al puntaje
 		function cambiar_fondo(punt){
 		    if(punt == 0){
@@ -150,12 +168,19 @@ function drawEstrellas(){
 		    }
 		    if(punt== 2){
 		        crear_fondo(2);
+
 		    }
 		    if(punt== 3){
-		        crear_fondo(3);
-		    }
+					crear_fondo(3);
+
+				} //suena el tiburon
+
+
+
 		    if(punt > 3){
-		        crear_fondo(4);
+				crear_fondo(4);
+				 //para el ultimo fondo, el tiburon suena cada 4 segundos
+
 		    }
 		}
 //Funcion que para o activa la gravedad, usada mayormente para debug
@@ -194,14 +219,19 @@ function startAnimation(event){
             }
             else{
                 cancelAnimationFrame(paraPausa);
+								ctx.fillStyle = "#fff";
+                ctx.font="bold 90px VT323";
+                ctx.fillText("P A U S E D", 250,250);
                 this.textContent = 'Start';
             }
         }
 //Funcion encargada de dibujar todo
 setTimeout(drawEstrellas,1000);
 function draw(){
-	     musica_juego.play();
+	   musica_juego.play();
 		 cambiar_fondo(score);
+
+
        //--------------Generamos tuberias, las metemos en array y su altura la ponemos aleatoria ------
         for(var i = 0; i < pipe.length; i++){
             constant = pipeNorth.height+gap;
@@ -215,41 +245,47 @@ function draw(){
                     y : Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height,  //
                     paso : 0,
                     paso2: 0
-                }); 
+                });
                     pipe[i].paso = 1;
                 }
             }
             if(pipe[i].x <= 30 && pipe[i].paso2==0){
                 score++;
+								scor.volume = 0.7;
                 scor.play();
-                pipe[i].paso2 = 1;
+								pipe[i].paso2 = 1;
+								if(score>3){
+								setTimeout(sonido_ambiente1, 1300); //evento multimedia
+							 }
+							}
 
-            }
+
+
             //Funcion dentro del pez que detecta colisiones
-			pez.collision(i);
+						pez.collision(i);
+
         }
          // --------------- Generamos el magikarp y el suelo --------
         ctx.drawImage(fg,0,canvas.height - fg.height);   // dibujamos el suelo
-<<<<<<< HEAD
+
        // ctx.drawImage(pez.imagen,pez.x,pez.y);  //dibujamos el pez
 
         //render player
         ctx.drawImage(pez.imagen, pez.getNextFrame() * pez.width, 0, //inicio de la imagen estatica
         pez.width, pez.height, //final de la imagen estatica
         pez.x, pez.y, //posicion del pez
-        pez.width, pez.height); //tamaño de la imagen sprite 
+        pez.width, pez.height); //tamaño de la imagen sprite
 
         pez.caida();
 
         ctx.drawImage(fg,0,canvas.height - fg.height);
         //ctx.drawImage(pez.imagen,pez.x,pez.y);
       //  pez.y += gravity;
-=======
-        ctx.drawImage(pez.imagen,pez.x,pez.y);  //dibujamos el pez
-        pez.y += gravity;
->>>>>>> 4c79cbbeb01c90e7385bae2e25f835e9881bf4d4
+
+
+
         ctx.fillStyle = "#000";
-        ctx.font = "20px Verdana";
-        ctx.fillText("Score : "+score,10,canvas.height-20);
+				ctx.font = "40px VT323";
+	      ctx.fillText("Score : "+score,10,canvas.height-20);
         paraPausa = requestAnimationFrame(draw);
     }

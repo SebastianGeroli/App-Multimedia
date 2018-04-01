@@ -7,7 +7,7 @@
     var recomendar_guardar = new Array();
 
 
-   
+
 
 
     function validar(){
@@ -23,7 +23,7 @@
 
     if(isNaN(edad) || edad < 1 || edad > 100) {
         alert("Edad no válida.");
-        return false;        
+        return false;
     }else
 
     if(!cond.checked){
@@ -48,35 +48,35 @@ if(valido=0){
         if(nota[i].checked){
             nota_guardar[n_encuesta] = nota[i].value;
         }
-  
+
     }
-    
+
     for(var i=0; i<diversion.length; i++) {
         if(diversion[i].checked){
             diversion_guardar[n_encuesta] = diversion[i].value;
         }
-  
+
     }
-    
+
     for(var i=0; i<jugabilidad.length; i++) {
         if(jugabilidad[i].checked){
-            jugabilidad_guardar[n_encuesta] = jugabilidad[i].value;   
+            jugabilidad_guardar[n_encuesta] = jugabilidad[i].value;
         }
-  
+
     }
- 
+
     for(var i=0; i<visual.length; i++) {
         if(visual[i].checked){
             visual_guardar[n_encuesta] = visual[i].value;
         }
-  
+
     }
- 
+
     for(var i=0; i<recomendar.length; i++) {
         if(recomendar[i].checked){
             recomendar_guardar[n_encuesta] = recomendar[i].value;
         }
-  
+
     }
     alert("Nombre: "+nombre+ "\n Edad: "+edad+"\n Nota: "
         +nota_guardar[n_encuesta]+"\n Diversion: "
@@ -87,7 +87,7 @@ if(valido=0){
     n_encuesta++;
     return true;
 }
- 
+
 }
 
 
@@ -162,4 +162,3 @@ if(valido=0){
    juego_opt.className = "option_pulsed";
 
  }
-
