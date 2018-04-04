@@ -131,10 +131,10 @@ function play_button_to_game(){
                 //moveUp();
                 pez.salto();
                 break;
-            case 32:/*tecla: SPACE */
-                gravityOnOff();
-                break;
-			case 109:/*tecla: S */
+            //case 32:/*tecla: SPACE */
+              //  gravityOnOff();
+               // break;
+			case 109:/*tecla: - */
 				startAnimation();
 				break;
             default:
